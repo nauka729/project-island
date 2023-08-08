@@ -4,20 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Island</title>
+    <script src="script.js"></script>
 </head>
 <body>
+  <!-- Sending the data -->
     <form>
         <div>
-          <label for="item_name">Item</label>
+          <label for="item_name_">Item</label>
           <input id="item_name" type="text" name="text" />
         </div>
         <div>
-            <label for="item_price">Price</label>
+            <label for="item_price_">Price</label>
             <input id="item_price" type="text" name="text" />
           </div>
         <div>
-          <input type="submit" value="Send" />
+          <input type="submit" value="Send" onclick="sendData()" />
         </div>
       </form>
+  <!-- Retrieving the data -->
+  <div id="data_display"></div>
+
+  <button onclick="loadData()">Load data by clicking here!</button>
 </body>
 </html>
