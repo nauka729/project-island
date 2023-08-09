@@ -2,3 +2,5 @@
 __pycache__/
 TEMP/
 .vscode/
+backend/Dockerfile
+backend/__pycache__/

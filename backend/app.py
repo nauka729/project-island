@@ -18,7 +18,8 @@ def get_items():
     conn = psycopg2.connect(database="items",
                             user="postgres",
                             password="postgres",
-                            host="localhost", port="5432")
+                            #host="localhost", port="5432")
+                            host="host.docker.internal", port="5432") # if you need to connect from container to host's localhost
     # create a cursor
     cur = conn.cursor()
   
@@ -45,7 +46,8 @@ def send_items():
     conn = psycopg2.connect(database="items",
                             user="postgres",
                             password="postgres",
-                            host="localhost", port="5432")
+                            #host="localhost", port="5432")
+                            host="host.docker.internal", port="5432")
   
     cur = conn.cursor()
   
