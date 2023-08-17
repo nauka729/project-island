@@ -24,7 +24,7 @@ def get_items():
     cur = conn.cursor()
   
     # Select all products from the table
-    cur.execute('''SELECT item_name, price FROM items''')
+    cur.execute('''SELECT item_id, auction_id, hid, name, owner, price, time FROM items''')
   
     # Fetch the data
     data = cur.fetchall()

@@ -1,7 +1,7 @@
 function json_to_html_list(data_in_json) {
     let output = "<ul>";
     for (let item of data_in_json) {
-        output += `<li>${item[0]} -- $${item[1]}</li>`;
+        output += `<li>${item[0]} -- ${item[1]} -- ${item[2]} -- ${item[3]} -- ${item[4]} -- ${item[5]} -- ${item[6]}</li>`;
     }
     output += "</ul>";
     return output
