@@ -4,3 +4,4 @@ TEMP/
 .vscode/
 backend/Dockerfile
 backend/__pycache__/
+backend/docker-compose.yml
