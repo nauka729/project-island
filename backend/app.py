@@ -19,7 +19,7 @@ def get_items():
                             user="postgres",
                             password="postgres",
                             #host="localhost", port="5432")
-                            host="host.docker.internal", port="5432") # if you need to connect from container to host's localhost
+                            host="host.docker.internal", port="5555") # if you need to connect from container to host's localhost
     # create a cursor
     cur = conn.cursor()
   
@@ -47,7 +47,7 @@ def send_items():
                             user="postgres",
                             password="postgres",
                             #host="localhost", port="5432")
-                            host="host.docker.internal", port="5432")
+                            host="host.docker.internal", port="5555")
   
     cur = conn.cursor()
   
