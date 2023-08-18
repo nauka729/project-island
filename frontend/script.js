@@ -10,6 +10,7 @@ function json_to_html_list(data_in_json) {
         <td>${item[4]}</td>
         <td>${item[5]}</td>
         <td>${item[6]}</td>
+        <td>${item[7]}</td>
         </tr>`;
     }
     return output
@@ -46,3 +47,25 @@ function sendData() {
     })
 
 }
+
+function sendDataNewTEST(){
+    document.getElementById('jsonForm').addEventListener('submit', function(e){
+        try {
+            JSON.parse(document.querySelector('[name="jsonInput"]').value);
+        } catch (error) {
+            e.preventDefault();
+            alert('Invalid JSON')
+        }
+    })
+}
+
+function validateJSON(){
+    try {
+        JSON.parse(document.querySelector('[name="jsonInput"]').value);
+        return true;
+    } catch (error) {
+        alert('Invalid JSON provided!');
+        return false;
+    }
+}
+

@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 import json
 from flask_cors import CORS
 import psycopg2
+from parse_and_insert import parse_and_insert
 
 app = Flask(__name__)
 CORS(app)
@@ -24,7 +25,7 @@ def get_items():
     cur = conn.cursor()
   
     # Select all products from the table
-    cur.execute('''SELECT item_id, auction_id, hid, name, owner, price, time FROM items''')
+    cur.execute('''SELECT id, item_id, auction_id, hid, name, owner, price, time FROM items''')
   
     # Fetch the data
     data = cur.fetchall()
@@ -32,8 +33,8 @@ def get_items():
     # close the cursor and connection
     cur.close()
     conn.close()
-    print(data)
-    print(json.dumps(data))
+    #print(data)
+    #print(json.dumps(data))
     return json.dumps(data)
         
 
@@ -76,4 +77,10 @@ def send_items():
     return jsonify({"message": "Items added successfully!"}) 
 
 
+@app.route('/send_items_json', methods=["POST"])
+def send_items_json():
+    # get the textarea text:
+    json_text = request.form['jsonInput']
+    message = parse_and_insert(json_text)
 
+    return message
