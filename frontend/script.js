@@ -22,8 +22,13 @@ function loadData() {
         .then(res => res.json())
         .then(res => {
             document.getElementById("items_display").innerHTML = json_to_html_list(res);
+            const table = document.getElementById("items_display");
+            const count = table.rows.length;
+            const countDisplay = document.getElementById("item_count");
+            countDisplay.textContent = "identifier: " + count;
             
-        })
+        });
+         
 }
 
 function sendData() {
@@ -68,4 +73,45 @@ function validateJSON(){
         return false;
     }
 }
+function sortTable(columnIndex) {
+    const table = document.getElementById("items_display");
+    let rows = Array.from(table.rows);
+    const isNumeric = inferColumnType(rows, columnIndex);
 
+    // Sort rows array
+    rows.sort((a, b) => {
+        const cellA = a.cells[columnIndex].innerText;
+        const cellB = b.cells[columnIndex].innerText;
+
+        if (isNumeric) {
+            return parseInt(cellA, 10) - parseInt(cellB, 10);
+        } else {
+            return cellA.localeCompare(cellB);
+        }
+    });
+
+    // Append rows in the new order to the table
+    for (let row of rows) {
+        table.appendChild(row);
+    }
+}
+
+function inferColumnType(rows, columnIndex) {
+    // Check a few rows to infer data type
+    for (let i = 0; i < rows.length && i < 5; i++) {
+        const cellValue = rows[i].cells[columnIndex] && rows[i].cells[columnIndex].innerText.trim();
+        if (cellValue && !isNaN(cellValue) && Number.isInteger(+cellValue)) {
+            return true; // Numeric (Integer)
+        }
+    }
+    return false; // String
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const headers = document.querySelectorAll("th");
+    headers.forEach((header, index) => {
+        header.addEventListener("click", function() {
+            sortTable(index);
+        });
+    });
+});

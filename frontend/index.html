@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Island</title>
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -33,12 +33,10 @@
 
   <!-- Retrieving the data -->
   <button onclick="loadData()">Load data by clicking here!</button>
-
-  <div id="data_display"></div>
-  <table>
+  <table id="main_table_with_items">
     <thead>
     <tr>
-        <th>identifier</th>
+        <th id = "item_count">identifier</th>
         <th>item_id</th>
         <th>auction_id</th>
         <th>hid</th>
