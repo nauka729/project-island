@@ -67,7 +67,9 @@ def parse_and_insert(json_file_as_text):
             cur.execute("ROLLBACK TO SAVEPOINT sp_insert")
             cur.execute("""
             UPDATE items
-            SET time = %s
+            SET 
+                time = %s,
+                updated_at = now()
             WHERE id = %s
             """, (time_left, id))
         

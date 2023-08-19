@@ -2,7 +2,9 @@ from flask import Flask, request, jsonify
 import json
 from flask_cors import CORS
 import psycopg2
+from psycopg2.extras import RealDictCursor
 from parse_and_insert import parse_and_insert
+import datetime
 
 app = Flask(__name__)
 CORS(app)
@@ -25,7 +27,7 @@ def get_items():
     cur = conn.cursor()
   
     # Select all products from the table
-    cur.execute('''SELECT id, item_id, auction_id, hid, name, owner, price, time FROM items''')
+    cur.execute('''SELECT id, item_id, auction_id, hid, name, owner, price, time, created_at, updated_at FROM items''')
   
     # Fetch the data
     data = cur.fetchall()
@@ -35,7 +37,8 @@ def get_items():
     conn.close()
     #print(data)
     #print(json.dumps(data))
-    return json.dumps(data)
+    # handling the datatime object and converting it to string
+    return json.dumps(data, default=lambda o: o.strftime('%Y-%m-%d %H:%M:%S') if isinstance(o, datetime.datetime) else o)
         
 
 

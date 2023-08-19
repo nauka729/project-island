@@ -11,6 +11,8 @@ function json_to_html_list(data_in_json) {
         <td>${item[5]}</td>
         <td>${item[6]}</td>
         <td>${item[7]}</td>
+        <td>${item[8]}</td>
+        <td>${item[9]}</td>
         </tr>`;
     }
     return output
