@@ -40,7 +40,34 @@ def get_items():
     # handling the datatime object and converting it to string
     return json.dumps(data, default=lambda o: o.strftime('%Y-%m-%d %H:%M:%S') if isinstance(o, datetime.datetime) else o)
         
-
+@app.route('/get_item_by_name', methods=["GET"])
+def get_item_by_name():
+    print("Get single item by name endpoint reached...")
+    item_name = request.args.get('name')
+    print(item_name)
+    #Connect to the database
+    conn = psycopg2.connect(database="items",
+                            user="postgres",
+                            password="postgres",
+                            #host="localhost", port="5432")
+                            host="host.docker.internal", port="5555") # if you need to connect from container to host's localhost
+    # create a cursor
+    cur = conn.cursor()
+  
+    # Select all products from the table
+    # You need the comma at the end as this makes it a tuple!
+    cur.execute("SELECT name, price, created_at, updated_at FROM items WHERE name = %s", (item_name,))
+  
+    # Fetch the data
+    data = cur.fetchall()
+  
+    # close the cursor and connection
+    cur.close()
+    conn.close()
+    #print(data)
+    #print(json.dumps(data))
+    # handling the datatime object and converting it to string
+    return json.dumps(data, default=lambda o: o.strftime('%Y-%m-%d %H:%M:%S') if isinstance(o, datetime.datetime) else o)
 
 @app.route('/send_items', methods=["POST"])
 def send_items():

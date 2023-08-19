@@ -18,6 +18,21 @@ function json_to_html_list(data_in_json) {
     return output
 }
 
+function json_to_html_list2(data_in_json) {
+    let output = '';
+    for (let item of data_in_json) {
+        output += `
+        <tr>
+        <td>${item[0]}</td>
+        <td>${item[1]}</td>
+        <td>${item[2]} </td>
+        <td>${item[3]}</td>
+        </tr>`;
+    }
+    return output
+}
+
+
 function loadData() {
     fetch("http://127.0.0.1:5000/get_items")
         // the frontend is running on port: 3000 while backend on 5000, you need to specify that 
@@ -32,6 +47,21 @@ function loadData() {
         });
          
 }
+
+
+function fetchItemData() {
+    const itemName = document.getElementById("itemInput").value;
+    loadItemDataByName(itemName);
+}
+
+function loadItemDataByName(itemName) {
+    fetch(`http://127.0.0.1:5000/get_item_by_name?name=${itemName}`)
+        .then(res => res.json())
+        .then(res => {
+            document.getElementById("container").innerHTML = json_to_html_list2(res);            
+        });
+}
+
 
 function sendData() {
     const itemName = document.getElementById("item_name").value;

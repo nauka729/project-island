@@ -30,7 +30,12 @@
     <br>
     <input type="submit" value="Send JSON" onclick="return validateJSON();">
   </form>
-
+  <!-- Retrieving one item stats -->
+  <br>
+  <input type="text" id="itemInput" placeholder="Enter item name...">
+  <button onclick="fetchItemData()">Get Item Data</button>
+  <table id="container"></div>
+  <br>
   <!-- Retrieving the data -->
   <button onclick="loadData()">Load data by clicking here!</button>
   <table id="main_table_with_items">
