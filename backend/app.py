@@ -22,7 +22,8 @@ def get_items():
                             user="postgres",
                             password="postgres",
                             #host="localhost", port="5432")
-                            host="host.docker.internal", port="5555") # if you need to connect from container to host's localhost
+                            #host="host.docker.internal", port="5555") # if you need to connect from container to host's localhost
+                            host="postgres-test-service", port="5432")    # TEST SERVICE NEEDS TO BE CHANGED LATER!
     # create a cursor
     cur = conn.cursor()
   
@@ -50,7 +51,9 @@ def get_item_by_name():
                             user="postgres",
                             password="postgres",
                             #host="localhost", port="5432")
-                            host="host.docker.internal", port="5555") # if you need to connect from container to host's localhost
+                            #host="host.docker.internal", port="5555") # if you need to connect from container to host's localhost
+                            host="postgres-test-service", port="5432")    # TEST SERVICE NEEDS TO BE CHANGED LATER!
+    
     # create a cursor
     cur = conn.cursor()
   
@@ -78,7 +81,8 @@ def send_items():
                             user="postgres",
                             password="postgres",
                             #host="localhost", port="5432")
-                            host="host.docker.internal", port="5555")
+                            #host="host.docker.internal", port="5555") # if you need to connect from container to host's localhost
+                            host="postgres-test-service", port="5432")    # TEST SERVICE NEEDS TO BE CHANGED LATER!
   
     cur = conn.cursor()
   

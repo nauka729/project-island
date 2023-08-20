@@ -19,11 +19,18 @@ def parse_and_insert(json_file_as_text):
 
 
     # Database manipulation:
-    # Connect to the database
+    # Connect to the database (when in docker)
+    #conn = psycopg2.connect(database="items",
+    #                        user="postgres",
+    #                        password="postgres",
+    #                        host="host.docker.internal", port="5555")
+    # Connect to the database (when in k8s, using service)
     conn = psycopg2.connect(database="items",
                             user="postgres",
                             password="postgres",
-                            host="host.docker.internal", port="5555")
+                            host="postgres-test-service", port="5432")    # TEST SERVICE NEEDS TO BE CHANGED LATER!
+
+
     
     # Create a cursor
     cur = conn.cursor() 

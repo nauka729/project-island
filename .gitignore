@@ -5,3 +5,5 @@ TEMP/
 backend/Dockerfile
 backend/__pycache__/
 backend/docker-compose.yml
+scripts/
+k8s/
