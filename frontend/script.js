@@ -7,7 +7,7 @@ function json_to_html_list(data_in_json) {
         <td>${item[1]}</td>
         <td>${item[2]} </td>
         <td>${item[3]}</td>
-        <td>${item[4]}</td>
+        <td class="item-name" onmouseover="fetchItemDataOnHovering(this)" onmouseout="hideHoverBoxOnHovering()">${item[4]}</td>
         <td>${item[5]}</td>
         <td>${item[6]}</td>
         <td>${item[7]}</td>
@@ -32,6 +32,19 @@ function json_to_html_list2(data_in_json) {
     return output
 }
 
+function displayInBox(data_in_json) {
+    let output = '';
+    for (let item of data_in_json) {
+        output += `
+        <div class="item-details">
+            <strong>Name:</strong> ${item[0]}<br>
+            <strong>Price:</strong> ${item[1]}<br>
+            <!-- You can continue in this format for other details -->
+        </div>`;
+    }
+    return output;
+}
+
 
 function loadData() {
     fetch("http://127.0.0.1:5000/get_items")
@@ -48,6 +61,39 @@ function loadData() {
          
 }
 
+function fetchItemDataOnHovering(element) {
+    const itemName = element.textContent;
+    loadItemDataByNameOnHovering(itemName, element);
+}
+
+function loadItemDataByNameOnHovering(itemName, element) {
+    fetch(`http://127.0.0.1:5000/get_item_by_name?name=${itemName}`)
+        .then(res => res.json())
+        .then(res => {
+            // Populate the hover box with fetched data
+            document.getElementById("container").innerHTML = displayInBox(res);
+
+            // Show the hover box
+            const hoverBox = document.getElementById("hoverBox");
+            hoverBox.style.display = "block";
+
+            // Position the hover box next to the item
+            hoverBox.style.left = `${element.getBoundingClientRect().right + 5}px`;
+            hoverBox.style.top = `${element.getBoundingClientRect().top}px`;
+        });
+}
+
+function hideHoverBoxOnHovering() {
+    document.getElementById("hoverBox").style.display = "none";
+}
+
+// Hide the hover box if you hover away from it
+document.getElementById("hoverBox").onmouseout = function(event) {
+    if (!Array.from(document.getElementsByClassName("item-name")).includes(event.relatedTarget)) {
+        hideHoverBoxOnHovering();
+    }
+};
+
 
 function fetchItemData() {
     const itemName = document.getElementById("itemInput").value;
@@ -61,6 +107,10 @@ function loadItemDataByName(itemName) {
             document.getElementById("container").innerHTML = json_to_html_list2(res);            
         });
 }
+
+
+
+
 
 
 function sendData() {

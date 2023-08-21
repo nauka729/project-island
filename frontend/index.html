@@ -23,7 +23,10 @@
         </div>
       </form>
   -->
-
+  <!-- Hidden box for displaying data on hover -->
+<div id="hoverBox" style="display: none; position: absolute; border: 1px solid #ccc; background-color: #fff; padding: 10px;">
+  <div id="container"></div>
+</div>
   <!-- Sending the data the new way -->
   <form action="http://127.0.0.1:5000/send_items_json" method="post" id="jsonForm">
     <textarea name="jsonInput" placeholder="Paste your JSON here!"></textarea>
