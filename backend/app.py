@@ -72,7 +72,7 @@ def get_item_by_name():
     # handling the datatime object and converting it to string
     return json.dumps(data, default=lambda o: o.strftime('%Y-%m-%d %H:%M:%S') if isinstance(o, datetime.datetime) else o)
 
-@app.route('/send_items', methods=["POST"])
+""" @app.route('/send_items', methods=["POST"])
 def send_items():
     print("Items reached endpoint...")
 
@@ -108,13 +108,14 @@ def send_items():
     cur.close()
     conn.close()
   
-    return jsonify({"message": "Items added successfully!"}) 
+    return jsonify({"message": "Items added successfully!"})  """
 
 
 @app.route('/send_items_json', methods=["POST"])
 def send_items_json():
     # get the textarea text:
     json_text = request.form['jsonInput']
+    print("Received data:", json_text)
     message = parse_and_insert(json_text)
 
     return message

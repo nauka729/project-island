@@ -1,0 +1,13 @@
+{
+    "manifest_version": 3,
+    "name": "WebSocket Debugger",
+    "version": "1.0",
+    "permissions": ["debugger", "activeTab"],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "action": {
+      "default_popup": "popup.html"
+    }
+  }
+  

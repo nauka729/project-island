@@ -110,10 +110,7 @@ function loadItemDataByName(itemName) {
 
 
 
-
-
-
-function sendData() {
+/* function sendData() {
     const itemName = document.getElementById("item_name").value;
     const itemPrice = document.getElementById("item_price").value;
     console.log(itemName);
@@ -133,7 +130,7 @@ function sendData() {
 
     })
 
-}
+} */
 
 function sendDataNewTEST(){
     document.getElementById('jsonForm').addEventListener('submit', function(e){
