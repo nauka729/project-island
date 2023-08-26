@@ -100,7 +100,7 @@ def parse_and_insert(json_file_as_text):
             conn.commit()
             db_pool.putconn(conn)
     print(f"Inserted {inserted_count} records.")
-    print(f"Updated {inserted_count} records.")
+    print(f"Updated {updated_count} records.")
 
     return f"Inserted {inserted_count} and updated {updated_count}"
 
