@@ -6,6 +6,7 @@ import json
 from decouple import config
 from flask import Flask, request, jsonify, g
 from flask_cors import CORS
+import psycopg2
 from psycopg2 import pool
 from psycopg2.errors import UniqueViolation
 from psycopg2.extras import RealDictCursor
@@ -81,7 +82,7 @@ def insert_or_update_record(cur, item_id, details):
         WHERE id = %s
         """, (details['time_left'], unique_id))
         return "updated"
-
+    
 
 def parse_and_insert(json_file_as_text):
     items_dict = process_json_data(json_file_as_text)
@@ -97,7 +98,7 @@ def parse_and_insert(json_file_as_text):
                 else:
                     updated_count += 1
             conn.commit()
-
+            db_pool.putconn(conn)
     print(f"Inserted {inserted_count} records.")
     print(f"Updated {inserted_count} records.")
 
@@ -153,4 +154,8 @@ def send_items_json():
 
 @app.teardown_appcontext
 def close_db_pool(error):
-    db_pool.closeall()
+    try:
+        if hasattr(g, 'db_pool'):
+            g.db_pool.closeall()
+    except psycopg2.pool.PoolError:
+        pass
