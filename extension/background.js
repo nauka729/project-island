@@ -32,7 +32,7 @@ function debuggerEventHandler(debuggeeId, message, params) {
           }
         else{
             console.log('WebSocket Frame:', data);}
-            fetch('/send_items_json', {
+            fetch('http://island.com/api/v1/send_items_json', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'

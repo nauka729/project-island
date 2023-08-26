@@ -2,7 +2,14 @@ import json
 from pprint import pprint
 import psycopg2
 from psycopg2.errors import UniqueViolation
+from decouple import config
 
+# ENV. VARIABLES:
+DATABSE=config('DATABSE')
+USER=config('USER')
+PASSWORD=config('PASSWORD')
+HOST=config('HOST')
+PORT=config('PORT')
 
 def parse_and_insert(json_file_as_text):
     data = json.loads(json_file_as_text)
@@ -24,12 +31,15 @@ def parse_and_insert(json_file_as_text):
     #                        user="postgres",
     #                        password="postgres",
     #                        host="host.docker.internal", port="5555")
-    # Connect to the database (when in k8s, using service)
-    conn = psycopg2.connect(database="items",
-                            user="postgres",
-                            password="postgres",
+    #Connect to the database
+    #Connect to the database
+    conn = psycopg2.connect(database=DATABSE,
+                            user=USER,
+                            password=PASSWORD,
+                            #host="localhost", port="5432")
+                            #host="host.docker.internal", port="5555") # if you need to connect from container to host's localhost
                             #host="postgres-test-service", port="5432")    # TEST SERVICE NEEDS TO BE CHANGED LATER!
-                            host="postgres-service", port="5432")
+                            host=HOST, port=PORT)
     
     # Create a cursor
     cur = conn.cursor() 

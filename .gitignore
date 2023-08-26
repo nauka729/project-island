@@ -8,3 +8,4 @@ backend/docker-compose.yml
 scripts/
 k8s/
 skaffold.yaml
+.env

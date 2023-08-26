@@ -48,7 +48,7 @@ function displayInBox(data_in_json) {
 
 function loadData() {
     //fetch("http://flask-backend-service:5000/get_items") // when running within cluster
-    fetch("/get_items") // when using Ingress controler which will redirect this to correct service
+    fetch("/api/v1/get_items") // when using Ingress controler which will redirect this to correct service
         // the frontend is running on port: 3000 while backend on 5000, you need to specify that 
         .then(res => res.json())
         .then(res => {
@@ -68,7 +68,7 @@ function fetchItemDataOnHovering(element) {
 }
 
 function loadItemDataByNameOnHovering(itemName, element) {
-    fetch(`/get_item_by_name?name=${itemName}`)
+    fetch(`/api/v1/get_item_by_name?name=${itemName}`)
         .then(res => res.json())
         .then(res => {
             // Populate the hover box with fetched data
@@ -102,7 +102,7 @@ function fetchItemData() {
 }
 
 function loadItemDataByName(itemName) {
-    fetch(`/get_item_by_name?name=${itemName}`)
+    fetch(`/api/v1/get_item_by_name?name=${itemName}`)
         .then(res => res.json())
         .then(res => {
             document.getElementById("container").innerHTML = json_to_html_list2(res);            
