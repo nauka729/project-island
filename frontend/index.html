@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+ 
   <!-- Sending the data the old way -->
   <!--  <form>
         <div>
@@ -28,7 +29,7 @@
   <div id="container"></div>
 </div>
   <!-- Sending the data the new way -->
-  <form action="http://127.0.0.1:5000/send_items_json" method="post" id="jsonForm">
+  <form action="/send_items_json" method="post" id="jsonForm">
     <textarea name="jsonInput" placeholder="Paste your JSON here!"></textarea>
     <br>
     <input type="submit" value="Send JSON" onclick="return validateJSON();">

@@ -32,7 +32,7 @@ function debuggerEventHandler(debuggeeId, message, params) {
           }
         else{
             console.log('WebSocket Frame:', data);}
-            fetch('http://127.0.0.1:5000/send_items_json', {
+            fetch('/send_items_json', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'

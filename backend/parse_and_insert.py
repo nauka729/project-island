@@ -28,9 +28,8 @@ def parse_and_insert(json_file_as_text):
     conn = psycopg2.connect(database="items",
                             user="postgres",
                             password="postgres",
-                            host="postgres-test-service", port="5432")    # TEST SERVICE NEEDS TO BE CHANGED LATER!
-
-
+                            #host="postgres-test-service", port="5432")    # TEST SERVICE NEEDS TO BE CHANGED LATER!
+                            host="postgres-service", port="5432")
     
     # Create a cursor
     cur = conn.cursor() 
