@@ -1,3 +1,4 @@
+// this needs to be refactored
 function json_to_html_list(data_in_json) {
     let output = '';
     for (let item of data_in_json) {
