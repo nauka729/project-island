@@ -1,0 +1,27 @@
+apiVersion: skaffold/v4beta6
+kind: Config
+metadata:
+  name: project-island
+build:
+  local:
+    useDockerCLI: true
+  artifacts:
+    - image: nauka792/flask_backend
+      context: backend
+      docker:
+        dockerfile: Dockerfile
+    - image: nauka792/myfrontend
+      context: frontend
+      docker:
+        dockerfile: Dockerfile
+manifests:
+  rawYaml:
+    - k8s/flask-backend-deployment.yaml
+    - k8s/flask-backend-service.yaml
+    - k8s/ingress-frontend.yaml
+    - k8s/postgres-deployment.yaml
+    - k8s/postgres-service.yaml
+    - k8s/frontend/frontend-deployment.yaml
+    - k8s/frontend/frontend-service.yaml
+    #- k8s/testing/postgres-deployment-test-service.yaml
+    #- k8s/testing/postgres-deployment-test.yaml

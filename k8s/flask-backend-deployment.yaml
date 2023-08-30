@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-backend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flask-backend
+  template:
+    metadata:
+      labels:
+        app: flask-backend
+    spec:
+      containers:
+      - name: flask-backend-container
+        image: nauka792/flask_backend # delete the tag
+        imagePullPolicy: IfNotPresent
+
+      #imagePullSecrets:
+      #- name: myregistrykey
