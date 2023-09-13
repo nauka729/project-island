@@ -63,17 +63,7 @@
     
   </table>
 
-<!-- XSS test -->
-<input type="text" id="userInput" placeholder="Enter something!" />
-<button onclick="displayUserInput()"> Display</button>
-<div id="output"></div>
 
-<script>
-  function displayUserInput(){
-    var userInput = document.getElementById('userInput').value;
-    document.getElementById('output').innerHTML = userInput;
-  }
-</script>
 
 
 </body>
