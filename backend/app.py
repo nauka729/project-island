@@ -38,6 +38,9 @@ db_pool = pool.SimpleConnectionPool(
     port=PORT
 )
 
+API_KEY = "AKIAIOSFODNN7EXAMPLE"
+SECRET_KEY = "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
+
 if not db_pool:
     print("Error: Failed to create database connection pool.")
 
