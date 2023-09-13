@@ -9,3 +9,4 @@ scripts/
 #k8s/
 #skaffold.yaml
 .env
+init_db.py

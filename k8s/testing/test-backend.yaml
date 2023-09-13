@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-backend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test-backend-deployment
+  template:
+    metadata:
+      labels:
+        app: test-backend-deployment
+    spec:
+      containers:
+      - name: backend-test-container
+        image: backend-test-container:latest # include tag for local tests
+        imagePullPolicy: IfNotPresent
+
+      #imagePullSecrets:
+      #- name: myregistrykey
