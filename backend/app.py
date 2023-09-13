@@ -23,6 +23,8 @@ PASSWORD=config('PASSWORD')
 HOST=config('HOST')
 PORT=config('PORT')
 
+#TEST
+
 # CREATING THE CONNECTION POOL
 minconn = 1 # min. amount of concurrent connections to the database
 maxconn = 10 # this will need to be increased it this is ever published
