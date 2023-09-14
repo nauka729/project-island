@@ -38,11 +38,6 @@ db_pool = pool.SimpleConnectionPool(
     port=PORT
 )
 
-API_KEY = "AKIAIOSFODNN7EXAMPLE"
-SECRET_KEY = "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
-GOOGLE_CLIENT_ID = "123456789012-abcdefg12345hijklmnop.apps.googleusercontent.com"
-GOOGLE_CLIENT_SECRET = "xXxX_YoUr_SeCrEt_xXxX"
-
 if not db_pool:
     print("Error: Failed to create database connection pool.")
 
