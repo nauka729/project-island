@@ -26,11 +26,11 @@ PORT=config('PORT')
 #TEST
 
 # CREATING THE CONNECTION POOL
-minconn = 1 # min. amount of concurrent connections to the database
-maxconn = 10 # this will need to be increased it this is ever published
+MINCONN = 1 # min. amount of concurrent connections to the database
+MAXCONN = 10 # this will need to be increased it this is ever published
 
 db_pool = pool.SimpleConnectionPool(
-    minconn, maxconn,
+    MINCONN, MAXCONN,
     database=DATABASE,
     user=USER,
     password=PASSWORD,
@@ -42,6 +42,10 @@ if not db_pool:
     print("Error: Failed to create database connection pool.")
 
 # FUNCTIONS:
+def json_date_converter(o):
+    """Convert datetime objects to string format."""
+    return o.strftime('%Y-%m-%d %H:%M:%S') if isinstance(o, datetime.datetime) else o
+
 def process_json_data(json_file_as_text):
     data = json.loads(json_file_as_text)
     items_dict = {}
@@ -128,7 +132,8 @@ def get_items():
             data = cur.fetchall()
         db_pool.putconn(conn)
         # handling the datatime object and converting it to string
-    return json.dumps(data, default=lambda o: o.strftime('%Y-%m-%d %H:%M:%S') if isinstance(o, datetime.datetime) else o)
+    return jsonify([json_date_converter(item) for item in data])
+
 
 
 
@@ -142,7 +147,7 @@ def get_item_by_name():
             data = cur.fetchall()
         db_pool.putconn(conn)
         # handling the datatime object and converting it to string
-    return json.dumps(data, default=lambda o: o.strftime('%Y-%m-%d %H:%M:%S') if isinstance(o, datetime.datetime) else o)
+    return jsonify([json_date_converter(item) for item in data])
 
 
 @app.route('/api/v1/send_items_json', methods=["POST"])
